@@ -1,7 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-function App() {
-  return <div className="App"></div>;
+function Top() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Top rendered");
+  });
+
+  return (
+    <div>
+      <div onClick={() => setCount(count + 1)}>Top Level {count}</div>
+      <Middle />
+    </div>
+  );
 }
 
-export default App;
+function Middle() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Middle rendered");
+  });
+
+  return (
+    <div>
+      <div onClick={() => setCount(count + 1)}>Middle Level {count}</div>
+      <Bottom />
+    </div>
+  );
+}
+
+function Bottom() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("Bottom rendered");
+  });
+
+  return <div onClick={() => setCount(count + 1)}>Bottom Level {count}</div>;
+}
+
+export default Top;
